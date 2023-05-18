@@ -21,7 +21,7 @@ http://localhost:8080/greeting
 {"id":1,"content":"Hello, World!"}
 ```
 
-### b. Chamada com parãmetro:
+### b. Chamada com parâmetro:
 
 
 ```
