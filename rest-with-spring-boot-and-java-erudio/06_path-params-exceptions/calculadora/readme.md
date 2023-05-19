@@ -6,19 +6,20 @@ Objetos de estudo: Path Params e Exceptions.
 ## Sintaxe:
 
 ```HTML
-http://<URL_BASE>[:<PORTA>]/sum/numberOne/numberTwo
+http://<URL_BASE>[:<PORTA>]/<OPERACAO>/numberOne/numberTwo
 ```
 
 **Onde:**
 
 * <URL_BASE> - Endereço raiz do host. Ex: localhot
 * <PORTA> - (opcional) Porta de comunicação do host. Ex: localhost:8080
-* sum - Operação de soma
+* <OPERACAO> - Operação aritmética desejada (descritas abaixo)
 * numberOne, numberTwo - Elementos da operação aritmética selecionada. Podem ser números inteiros ou decimais.
 
 **Operações aritméticas disponiveis:**
 
-* Soma -
+* Soma - sum. Ex: http://localhost:8080/sum/numberOne/numberTwo
+* Subtração - sub. Ex: http://localhost:8080/sub/numberOne/numberTwo
 
 ## Exemplos:
 
@@ -34,16 +35,16 @@ http://localhost:8080/sum/1/2
 3.0
 ```
 
-### b. Soma entre dois números decimais:
+### b. Subtração entre dois números decimais:
 
 ```HTML
-http://localhost:8080/sum/3.2/6.9
+http://localhost:8080/sub/8.4/3.4
 ```
 
 #### Retorno:
 
 ```HTML
-10.100000000000001
+5.0
 ```
 
 ### c. Soma com valor errado (Exception):
