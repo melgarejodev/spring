@@ -28,7 +28,7 @@ http://<URL_BASE>[:<PORTA>]/<OPERACAO>/<NUMERO1>/<NUMERO2>
 * **div** - Quociente da divisão do dividendo pelo divisor. Ex: http://localhost:8080/div/dividendo/divisor
 * **avg** - Média aritmética simples entre os números informados. Ex: http://localhost:8080/avg/numberOne/numberTwo
 * **pow** - Potenciação da base elevada ao expoente. Ex: http://localhost:8080/pow/base/expoente
-* **sqr** - Exibe a raiz do radicando pelo índice. Ex: http://localhost:8080/sqr/radicando/indice
+* **root** - Exibe a raiz do radicando pelo índice. Se o índice não for informado, será assumido como 2. Ex: http://localhost:8080/root/radicando/indice
 
 ## Exemplos:
 
@@ -56,7 +56,23 @@ http://localhost:8080/sub/8.4/3.4
 5.0
 ```
 
-### c. Soma com valor errado (Exception):
+### c. Raiz quadrada de 16:
+
+```HTML
+http://localhost:8080/root/16/2
+
+ou
+
+http://localhost:8080/root/16
+```
+
+#### Retorno:
+
+```HTML
+4.0
+```
+
+### d. EXCEPTION - Parâmetro inválido na soma (serve para todas as operações):
 
 ```HTML
 http://localhost:8080/sum/5.5/A

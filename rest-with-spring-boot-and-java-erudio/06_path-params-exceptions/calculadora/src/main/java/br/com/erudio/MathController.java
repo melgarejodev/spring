@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.erudio.exceptions.UnsupportedMathOperationException;
+import io.micrometer.common.util.StringUtils;
 
 @RestController
 public class MathController {
@@ -61,7 +62,7 @@ public class MathController {
 	public Double average(@PathVariable(value="numberOne") String num1,
 			              @PathVariable(value="numberTwo") String num2) throws UnsupportedMathOperationException {
 
-		Double result;
+		final Double result;
 		
 		try {
 
@@ -75,13 +76,34 @@ public class MathController {
 
 	@RequestMapping(value="/pow/{base}/{expoente}", method=RequestMethod.GET)
 	public Double power(@PathVariable(value="base") String num1,
-						@PathVariable(value="expoente") String num2) throws UnsupportedMathOperationException {
+						@PathVariable(value="expoente") String num2) 
+								throws UnsupportedMathOperationException {
 
 		if(!isNumeric(num1) || !isNumeric(num2)) {
 			throw new UnsupportedMathOperationException("[Power] Informe valores numericos.");
 		}
 
 		return Math.pow(convertToDouble(num1), convertToDouble(num2)); 
+	}
+	
+	/*
+	 * RADICIACAO /pow/
+	 * Realiza o cálculo da base (num1) pelo índice (num2).
+	 * Se o num2 não for informado, será assumido como sendo 2, ou seja, sera calculada a raiz quadrada de num1.
+	 * 
+	 */
+	@RequestMapping(value={"/root/{radicando}","/root/{radicando}/{indice}"}, method=RequestMethod.GET)
+	public Double root(@PathVariable(value="radicando") String num1,
+			           @PathVariable(value="indice", required=false) String num2) 
+			        		   throws UnsupportedMathOperationException {
+		
+		final String indice = StringUtils.isEmpty(num2) ? "2" : num2; 
+		
+		if(!isNumeric(num1) || !isNumeric(indice)) {
+			throw new UnsupportedMathOperationException("[Root] Informe valores numericos.");
+		}
+		return Math.pow(convertToDouble(num1), (1/convertToDouble(indice))); 
+
 	}
 
 	private Double convertToDouble(String strNumber) {
