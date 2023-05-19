@@ -1,4 +1,4 @@
-# Cacluladora!
+# Cacluladora
 
 API para realizar operações matemáticas.
 Objetos de estudo: Path Params e Exceptions.
@@ -9,14 +9,14 @@ Objetos de estudo: Path Params e Exceptions.
 http://<URL_BASE>[:<PORTA>]/sum/numberOne/numberTwo
 ```
 
-** Onde: **
+**Onde:**
 
 * <URL_BASE> - Endereço raiz do host. Ex: localhot
 * <PORTA> - (opcional) Porta de comunicação do host. Ex: localhost:8080
 * sum - Operação de soma
 * numberOne, numberTwo - Elementos da operação aritmética selecionada. Podem ser números inteiros ou decimais.
 
-** Operações aritméticas disponiveis: **
+**Operações aritméticas disponiveis:**
 
 * Soma -
 
@@ -24,7 +24,7 @@ http://<URL_BASE>[:<PORTA>]/sum/numberOne/numberTwo
 
 ### a. Soma entre dois números inteiros:
 
-```
+```HTML
 http://localhost:8080/sum/1/2
 ```
 
@@ -36,7 +36,7 @@ http://localhost:8080/sum/1/2
 
 ### b. Soma entre dois números decimais:
 
-```
+```HTML
 http://localhost:8080/sum/3.2/6.9
 ```
 
