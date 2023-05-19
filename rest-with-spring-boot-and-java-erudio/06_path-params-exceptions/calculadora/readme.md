@@ -18,8 +18,8 @@ http://<URL_BASE>[:<PORTA>]/<OPERACAO>/numberOne/numberTwo
 
 **Operações aritméticas disponiveis:**
 
-* Soma - sum. Ex: http://localhost:8080/sum/numberOne/numberTwo
-* Subtração - sub. Ex: http://localhost:8080/sub/numberOne/numberTwo
+* **sum** - Soma das parcelas informadas (numberOne e numberTwo). Ex: http://localhost:8080/sum/numberOne/numberTwo
+* **sub** - Diferença entre o minuendo e o subtraendo. Ex: http://localhost:8080/sub/minuendo/subtraendo
 
 ## Exemplos:
 
