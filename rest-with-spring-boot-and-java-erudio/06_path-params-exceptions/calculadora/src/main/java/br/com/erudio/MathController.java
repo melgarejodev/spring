@@ -18,7 +18,7 @@ public class MathController {
 
 		if(!isNumeric(numberOne) || !isNumeric(numberTwo)) {
 
-			throw new UnsupportedMathOperationException("Informe valores numericos!");
+			throw new UnsupportedMathOperationException("[Sum] Informe valores numericos.");
 		}
 		return convertToDouble(numberOne) + convertToDouble(numberTwo);
 	}
@@ -29,7 +29,7 @@ public class MathController {
 
 		if(!isNumeric(num1) || !isNumeric(num2)) {
 
-			throw new UnsupportedMathOperationException("[Subtraction] - Os valores devem ser numericos.");
+			throw new UnsupportedMathOperationException("[Subtraction] Informe valores numericos.");
 		}
 
 		return convertToDouble(num1) - convertToDouble(num2); 
@@ -40,13 +40,23 @@ public class MathController {
 			                     @PathVariable(value="multiplicador") String num2) {
 
 		if(!isNumeric(num1) || !isNumeric(num2)) {
-			throw new UnsupportedMathOperationException("[Multiplication] - Informe valores numericos.");
+			throw new UnsupportedMathOperationException("[Multiplication] Informe valores numericos.");
 		}
 		
 		return convertToDouble(num1) * convertToDouble(num2); 
 	}
 
-	
+	@RequestMapping(value="/div/{dividendo}/{divisor}")
+	public Double division(@PathVariable(value="dividendo") String num1,
+			               @PathVariable(value="divisor") String num2) {
+
+		if(!isNumeric(num1) || !isNumeric(num2)) {
+			throw new UnsupportedMathOperationException("[Division] Informe valores numericos.");
+		}
+
+		return convertToDouble(num1) / convertToDouble(num2);
+	}
+
 	private Double convertToDouble(String strNumber) {
 		if(strNumber == null) return 0D;
 		// BR 10,25
