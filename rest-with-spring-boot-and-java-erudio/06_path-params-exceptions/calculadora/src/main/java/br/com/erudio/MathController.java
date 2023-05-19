@@ -24,17 +24,29 @@ public class MathController {
 	}
 
 	@RequestMapping(value="/sub/{numberOne}/{numberTwo}", method=RequestMethod.GET)
-	public Double sub(@PathVariable(value="numberOne") String num1, 
-			          @PathVariable(value="numberTwo") String num2) throws UnsupportedMathOperationException {
+	public Double subtraction(@PathVariable(value="numberOne") String num1, 
+			                  @PathVariable(value="numberTwo") String num2) throws UnsupportedMathOperationException {
 
 		if(!isNumeric(num1) || !isNumeric(num2)) {
 
-			throw new UnsupportedMathOperationException("Os valores devem ser numericos.");
+			throw new UnsupportedMathOperationException("[Subtraction] - Os valores devem ser numericos.");
 		}
 
 		return convertToDouble(num1) - convertToDouble(num2); 
 	}
 
+	@RequestMapping(value="/mult/{multiplicando}/{multiplicador}")
+	public Double multiplication(@PathVariable(value="multiplicando") String num1, 
+			                     @PathVariable(value="multiplicador") String num2) {
+
+		if(!isNumeric(num1) || !isNumeric(num2)) {
+			throw new UnsupportedMathOperationException("[Multiplication] - Informe valores numericos.");
+		}
+		
+		return convertToDouble(num1) * convertToDouble(num2); 
+	}
+
+	
 	private Double convertToDouble(String strNumber) {
 		if(strNumber == null) return 0D;
 		// BR 10,25
