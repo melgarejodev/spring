@@ -24,6 +24,11 @@ http://<URL_BASE>[:<PORTA>]/<OPERACAO>/<NUMERO1>/<NUMERO2>
 **Operações aritméticas disponiveis:**
 * **sum** - Soma das parcelas informadas (numberOne e numberTwo). Ex: http://localhost:8080/sum/numberOne/numberTwo
 * **sub** - Diferença entre o minuendo e o subtraendo. Ex: http://localhost:8080/sub/minuendo/subtraendo
+* **mult** - Produto da multiplicação entre os fatores. Ex: http://localhost:8080/mult/multiplicando/multiplicador
+* **div** - Quociente da divisão do dividendo pelo divisor. Ex: http://localhost:8080/div/dividendo/divisor
+* **avg** - Média aritmética simples entre os números informados. Ex: http://localhost:8080/avg/numberOne/numberTwo
+* **pow** - Potenciação da base elevada ao expoente. Ex: http://localhost:8080/pow/base/expoente
+* **sqr** - Exibe a raiz do radicando pelo índice. Ex: http://localhost:8080/sqr/radicando/indice
 
 ## Exemplos:
 
