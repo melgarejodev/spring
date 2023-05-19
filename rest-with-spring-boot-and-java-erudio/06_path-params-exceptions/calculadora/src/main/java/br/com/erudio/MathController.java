@@ -92,7 +92,7 @@ public class MathController {
 	 * Se o num2 não for informado, será assumido como sendo 2, ou seja, sera calculada a raiz quadrada de num1.
 	 * 
 	 */
-	@RequestMapping(value={"/root/{radicando}","/root/{radicando}/{indice}"}, method=RequestMethod.GET)
+	@RequestMapping(value={"/sqr/{radicando}", "/root/{radicando}","/root/{radicando}/{indice}"}, method=RequestMethod.GET)
 	public Double root(@PathVariable(value="radicando") String num1,
 			           @PathVariable(value="indice", required=false) String num2) 
 			        		   throws UnsupportedMathOperationException {
