@@ -35,7 +35,7 @@ public class MathController {
 		return convertToDouble(num1) - convertToDouble(num2); 
 	}
 
-	@RequestMapping(value="/mult/{multiplicando}/{multiplicador}")
+	@RequestMapping(value="/mult/{multiplicando}/{multiplicador}", method=RequestMethod.GET)
 	public Double multiplication(@PathVariable(value="multiplicando") String num1, 
 			                     @PathVariable(value="multiplicador") String num2) {
 
@@ -46,7 +46,7 @@ public class MathController {
 		return convertToDouble(num1) * convertToDouble(num2); 
 	}
 
-	@RequestMapping(value="/div/{dividendo}/{divisor}")
+	@RequestMapping(value="/div/{dividendo}/{divisor}", method=RequestMethod.GET)
 	public Double division(@PathVariable(value="dividendo") String num1,
 			               @PathVariable(value="divisor") String num2) {
 
@@ -55,6 +55,22 @@ public class MathController {
 		}
 
 		return convertToDouble(num1) / convertToDouble(num2);
+	}
+	
+	@RequestMapping(value="/avg/{numberOne}/{numberTwo}", method=RequestMethod.GET)
+	public Double average(@PathVariable(value="numberOne") String num1,
+			              @PathVariable(value="numberTwo") String num2) throws UnsupportedMathOperationException {
+
+		Double result;
+		
+		try {
+		
+			result = this.sum(num1, num2) / 2;
+				
+		} catch (Exception e) {
+			throw new UnsupportedMathOperationException("[Average] Informe valores numericos.");
+		}
+		return result;
 	}
 
 	private Double convertToDouble(String strNumber) {
