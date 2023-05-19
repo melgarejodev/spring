@@ -56,7 +56,7 @@ public class MathController {
 
 		return convertToDouble(num1) / convertToDouble(num2);
 	}
-	
+
 	@RequestMapping(value="/avg/{numberOne}/{numberTwo}", method=RequestMethod.GET)
 	public Double average(@PathVariable(value="numberOne") String num1,
 			              @PathVariable(value="numberTwo") String num2) throws UnsupportedMathOperationException {
@@ -64,13 +64,24 @@ public class MathController {
 		Double result;
 		
 		try {
-		
+
 			result = this.sum(num1, num2) / 2;
-				
+
 		} catch (Exception e) {
 			throw new UnsupportedMathOperationException("[Average] Informe valores numericos.");
 		}
 		return result;
+	}
+
+	@RequestMapping(value="/pow/{base}/{expoente}", method=RequestMethod.GET)
+	public Double power(@PathVariable(value="base") String num1,
+						@PathVariable(value="expoente") String num2) throws UnsupportedMathOperationException {
+
+		if(!isNumeric(num1) || !isNumeric(num2)) {
+			throw new UnsupportedMathOperationException("[Power] Informe valores numericos.");
+		}
+
+		return Math.pow(convertToDouble(num1), convertToDouble(num2)); 
 	}
 
 	private Double convertToDouble(String strNumber) {
