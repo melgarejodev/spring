@@ -6,20 +6,25 @@ Objetos de estudo: Path Params e Exceptions.
 ## Sintaxe:
 
 ```HTML
-http://<URL_BASE>[:<PORTA>]/<OPERACAO>/numberOne/numberTwo
+http://<URL_BASE>[:<PORTA>]/<OPERACAO>/<NUMERO1>/<NUMERO2>
 ```
 
 **Onde:**
 
 * <URL_BASE> - Endereço raiz do host. Ex: localhot
 * <PORTA> - (opcional) Porta de comunicação do host. Ex: localhost:8080
-* <OPERACAO> - Operação aritmética desejada (descritas abaixo)
-* numberOne, numberTwo - Elementos da operação aritmética selecionada. Podem ser números inteiros ou decimais.
+* <OPERACAO> - Operação aritmética desejada (detalhamento abaixo)
+* <NUMERO1> - Primeiro número informado, poderá ser um valor inteiro ou decimal.
+* <NUMERO2> - Segundo número informado, poderá ser um valor inteiro ou decimal.
+
+**OBS:** 
+* Os valores de <NUMERO1> e <NUMERO2> podem ser inteiros ou decimais.
+* O papel de cada número dependerá da operação aritmética selecionada.
 
 **Operações aritméticas disponiveis:**
 
 * Soma - sum. Ex: http://localhost:8080/sum/numberOne/numberTwo
-* Subtração - sub. Ex: http://localhost:8080/sub/numberOne/numberTwo
+* **sub** - Diferença entre o minuendo e o subtraendo. Ex: http://localhost:8080/sub/minuendo/subtraendo
 
 ## Exemplos:
 
