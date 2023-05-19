@@ -45,3 +45,15 @@ http://localhost:8080/sum/3.2/6.9
 ```HTML
 10.100000000000001
 ```
+
+### c. Soma com valor errado (Exception):
+
+```HTML
+http://localhost:8080/sum/5.5/A
+```
+
+### Retorno:
+
+```HTML
+{"timestamp":"2023-05-19T15:59:06.957+00:00","message":"Informe valores numericos!","details":"uri=/sum/5.5/A"}
+```
