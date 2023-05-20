@@ -12,6 +12,8 @@ import io.micrometer.common.util.StringUtils;
 
 @RestController
 public class MathController {
+	
+	private SimpleCalculator calc = new SimpleCalculator();
 
 	@GetMapping(value="/sum/{numberOne}/{numberTwo}")
 	public Double sum(
@@ -19,42 +21,42 @@ public class MathController {
 					@PathVariable(value = "numberTwo") String numberTwo
 			 	) throws Exception {
 
-		return SimpleCalculator.sum(NumberConverter.convertToDouble(numberOne), NumberConverter.convertToDouble(numberTwo));
+		return calc.sum(NumberConverter.convertToDouble(numberOne), NumberConverter.convertToDouble(numberTwo));
 	}
 
 	@GetMapping(value="/sub/{numberOne}/{numberTwo}")
 	public Double subtraction(@PathVariable(value="numberOne") String num1, 
 			                  @PathVariable(value="numberTwo") String num2) {
 
-		return SimpleCalculator.subtraction(NumberConverter.convertToDouble(num1), NumberConverter.convertToDouble(num2));
+		return calc.subtraction(NumberConverter.convertToDouble(num1), NumberConverter.convertToDouble(num2));
 	}
 
 	@GetMapping(value="/mult/{multiplicando}/{multiplicador}")
 	public Double multiplication(@PathVariable(value="multiplicando") String num1, 
 			                     @PathVariable(value="multiplicador") String num2) {
 
-		return SimpleCalculator.multiplication(NumberConverter.convertToDouble(num1), NumberConverter.convertToDouble(num2));
+		return calc.multiplication(NumberConverter.convertToDouble(num1), NumberConverter.convertToDouble(num2));
 	}
 
 	@GetMapping(value="/div/{dividendo}/{divisor}")
 	public Double division(@PathVariable(value="dividendo") String num1,
 			               @PathVariable(value="divisor") String num2) {
 
-		return SimpleCalculator.division(NumberConverter.convertToDouble(num1), NumberConverter.convertToDouble(num2));
+		return calc.division(NumberConverter.convertToDouble(num1), NumberConverter.convertToDouble(num2));
 	}
 
 	@GetMapping(value="/mean/{numberOne}/{numberTwo}")
 	public Double mean(@PathVariable(value="numberOne") String num1,
 			           @PathVariable(value="numberTwo") String num2) {
 
-		return SimpleCalculator.mean(NumberConverter.convertToDouble(num1), NumberConverter.convertToDouble(num2));
+		return calc.mean(NumberConverter.convertToDouble(num1), NumberConverter.convertToDouble(num2));
 	}
 
 	@GetMapping(value="/pow/{base}/{expoente}")
 	public Double power(@PathVariable(value="base") String num1,
 						@PathVariable(value="expoente") String num2) {
 
-		return SimpleCalculator.power(NumberConverter.convertToDouble(num1), NumberConverter.convertToDouble(num2));
+		return calc.power(NumberConverter.convertToDouble(num1), NumberConverter.convertToDouble(num2));
 	}
 	
 	/*
@@ -70,7 +72,7 @@ public class MathController {
 	public Double root(@PathVariable(value="radicando") String num1,
 			           @PathVariable(value="indice", required=false) String num2) {
 
-		return SimpleCalculator.root(NumberConverter.convertToDouble(num1),
+		return calc.root(NumberConverter.convertToDouble(num1),
 									 NumberConverter.convertToDouble(StringUtils.isEmpty(num2) ? "2" : num2));
 	}
 
