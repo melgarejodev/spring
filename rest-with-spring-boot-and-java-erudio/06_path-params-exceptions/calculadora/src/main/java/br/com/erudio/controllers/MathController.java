@@ -1,11 +1,13 @@
-package br.com.erudio;
+package br.com.erudio.controllers;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.erudio.converters.NumberConverter;
 import br.com.erudio.exceptions.UnsupportedMathOperationException;
+import br.com.erudio.math.SimpleCalculator;
 import io.micrometer.common.util.StringUtils;
 
 @RestController
@@ -17,61 +19,56 @@ public class MathController {
 					@PathVariable(value = "numberTwo") String numberTwo
 			 	) throws Exception {
 
-		if(!isNumeric(numberOne) || !isNumeric(numberTwo)) {
+		if(!NumberConverter.isNumeric(numberOne) || !NumberConverter.isNumeric(numberTwo)) {
 
 			throw new UnsupportedMathOperationException("[Sum] Informe valores numericos.");
 		}
-		return convertToDouble(numberOne) + convertToDouble(numberTwo);
+		return SimpleCalculator.sum(NumberConverter.convertToDouble(numberOne), NumberConverter.convertToDouble(numberTwo));
 	}
 
 	@RequestMapping(value="/sub/{numberOne}/{numberTwo}", method=RequestMethod.GET)
 	public Double subtraction(@PathVariable(value="numberOne") String num1, 
 			                  @PathVariable(value="numberTwo") String num2) throws UnsupportedMathOperationException {
 
-		if(!isNumeric(num1) || !isNumeric(num2)) {
+		if(!NumberConverter.isNumeric(num1) || !NumberConverter.isNumeric(num2)) {
 
 			throw new UnsupportedMathOperationException("[Subtraction] Informe valores numericos.");
 		}
 
-		return convertToDouble(num1) - convertToDouble(num2); 
+		return SimpleCalculator.subtraction(NumberConverter.convertToDouble(num1), NumberConverter.convertToDouble(num2));
 	}
 
 	@RequestMapping(value="/mult/{multiplicando}/{multiplicador}", method=RequestMethod.GET)
 	public Double multiplication(@PathVariable(value="multiplicando") String num1, 
 			                     @PathVariable(value="multiplicador") String num2) {
 
-		if(!isNumeric(num1) || !isNumeric(num2)) {
+		if(!NumberConverter.isNumeric(num1) || !NumberConverter.isNumeric(num2)) {
 			throw new UnsupportedMathOperationException("[Multiplication] Informe valores numericos.");
 		}
 		
-		return convertToDouble(num1) * convertToDouble(num2); 
+		return SimpleCalculator.multiplication(NumberConverter.convertToDouble(num1), NumberConverter.convertToDouble(num2));
 	}
 
 	@RequestMapping(value="/div/{dividendo}/{divisor}", method=RequestMethod.GET)
 	public Double division(@PathVariable(value="dividendo") String num1,
 			               @PathVariable(value="divisor") String num2) {
 
-		if(!isNumeric(num1) || !isNumeric(num2)) {
+		if(!NumberConverter.isNumeric(num1) || !NumberConverter.isNumeric(num2)) {
 			throw new UnsupportedMathOperationException("[Division] Informe valores numericos.");
 		}
 
-		return convertToDouble(num1) / convertToDouble(num2);
+		return SimpleCalculator.division(NumberConverter.convertToDouble(num1), NumberConverter.convertToDouble(num2));
 	}
 
 	@RequestMapping(value="/mean/{numberOne}/{numberTwo}", method=RequestMethod.GET)
 	public Double mean(@PathVariable(value="numberOne") String num1,
 			           @PathVariable(value="numberTwo") String num2) throws UnsupportedMathOperationException {
 
-		final Double result;
-		
-		try {
-
-			result = this.sum(num1, num2) / 2;
-
-		} catch (Exception e) {
+		if(!NumberConverter.isNumeric(num1) || !NumberConverter.isNumeric(num2)) {
 			throw new UnsupportedMathOperationException("[Mean] Informe valores numericos.");
 		}
-		return result;
+		return SimpleCalculator.mean(NumberConverter.convertToDouble(num1), NumberConverter.convertToDouble(num2));
+
 	}
 
 	@RequestMapping(value="/pow/{base}/{expoente}", method=RequestMethod.GET)
@@ -79,11 +76,11 @@ public class MathController {
 						@PathVariable(value="expoente") String num2) 
 								throws UnsupportedMathOperationException {
 
-		if(!isNumeric(num1) || !isNumeric(num2)) {
+		if(!NumberConverter.isNumeric(num1) || !NumberConverter.isNumeric(num2)) {
 			throw new UnsupportedMathOperationException("[Power] Informe valores numericos.");
 		}
 
-		return Math.pow(convertToDouble(num1), convertToDouble(num2)); 
+		return SimpleCalculator.power(NumberConverter.convertToDouble(num1), NumberConverter.convertToDouble(num2));
 	}
 	
 	/*
@@ -99,27 +96,11 @@ public class MathController {
 		
 		final String indice = StringUtils.isEmpty(num2) ? "2" : num2; 
 		
-		if(!isNumeric(num1) || !isNumeric(indice)) {
+		if(!NumberConverter.isNumeric(num1) || !NumberConverter.isNumeric(indice)) {
 			throw new UnsupportedMathOperationException("[Root] Informe valores numericos.");
 		}
-		return Math.pow(convertToDouble(num1), (1/convertToDouble(indice))); 
+		return SimpleCalculator.root(NumberConverter.convertToDouble(num1), NumberConverter.convertToDouble(indice));
 
-	}
-
-	private Double convertToDouble(String strNumber) {
-		if(strNumber == null) return 0D;
-		// BR 10,25
-		// US 10.25
-		String number = strNumber.replaceAll(",", ".");
-		if(isNumeric(number)) return Double.parseDouble(number);
-
-		return 0D;
-	}
-
-	private boolean isNumeric(String strNumber) {
-		if(strNumber == null) return false;
-		String number = strNumber.replaceAll(",", ".");
-		return number.matches("[-+]?[0-9]*\\.?[0-9]+");
 	}
 
 }
