@@ -12,23 +12,13 @@ public class NumberConverter {
 		Double result;
 
 		try {
-
 			result = Double.parseDouble(number);
 
 		} catch (Exception ex) {
-
 			throw new InvalidNumberException(String.format("O valor informado '%s' não é numérico.", strNumber));
 		}
 
 		return result;
 	}
-
-	public static boolean isNumeric(String strNumber) {
-		if(strNumber == null) return false;
-		String number = strNumber.replaceAll(",", ".");
-		
-		return number.matches("[-+]?[0-9]*\\.?[0-9]+");
-	}
-
 
 }
