@@ -17,7 +17,7 @@ public class GreetingControlller {
 			@RequestParam(value = "name", defaultValue = "World") 
 			String name) {
 
-		return new Greeting(9, String.format(template,  name));
+		return new Greeting(counter, String.format(template,  name));
 
 	}
 

@@ -11,7 +11,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import br.com.erudio.exceptions.ExceptionResponse;
-import br.com.erudio.exceptions.UnsupportedMathOperationException;
+import br.com.erudio.exceptions.InvalidNumberException;
 
 @ControllerAdvice
 @RestController
@@ -32,15 +32,15 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 	}
 
 	// Bad Request - 400
-	@ExceptionHandler(UnsupportedMathOperationException.class)
+	@ExceptionHandler(InvalidNumberException.class)
 	public final ResponseEntity<ExceptionResponse> handleBadRequestExceptions(Exception ex, WebRequest request) {
-		
+
 		ExceptionResponse exceptionResponse = new ExceptionResponse(
 				new Date(), 
-				ex.getMessage(), 
+				ex.getMessage(),
 				request.getDescription(false)
 				);
-		
+
 		return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
 		
 	}
