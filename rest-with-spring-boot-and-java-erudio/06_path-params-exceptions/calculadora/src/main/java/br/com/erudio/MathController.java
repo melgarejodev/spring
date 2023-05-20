@@ -58,9 +58,9 @@ public class MathController {
 		return convertToDouble(num1) / convertToDouble(num2);
 	}
 
-	@RequestMapping(value="/avg/{numberOne}/{numberTwo}", method=RequestMethod.GET)
-	public Double average(@PathVariable(value="numberOne") String num1,
-			              @PathVariable(value="numberTwo") String num2) throws UnsupportedMathOperationException {
+	@RequestMapping(value="/mean/{numberOne}/{numberTwo}", method=RequestMethod.GET)
+	public Double mean(@PathVariable(value="numberOne") String num1,
+			           @PathVariable(value="numberTwo") String num2) throws UnsupportedMathOperationException {
 
 		final Double result;
 		
@@ -69,7 +69,7 @@ public class MathController {
 			result = this.sum(num1, num2) / 2;
 
 		} catch (Exception e) {
-			throw new UnsupportedMathOperationException("[Average] Informe valores numericos.");
+			throw new UnsupportedMathOperationException("[Mean] Informe valores numericos.");
 		}
 		return result;
 	}
