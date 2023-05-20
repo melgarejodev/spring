@@ -19,10 +19,9 @@ public class MathController {
 					@PathVariable(value = "numberTwo") String numberTwo
 			 	) throws Exception {
 
-		if(!NumberConverter.isNumeric(numberOne) || !NumberConverter.isNumeric(numberTwo)) {
-
-			throw new UnsupportedMathOperationException("[Sum] Informe valores numericos.");
-		}
+//  		if(!NumberConverter.isNumeric(numberOne) || !NumberConverter.isNumeric(numberTwo)) {
+// 			throw new UnsupportedMathOperationException("[Sum] Informe valores numericos.");
+//		}
 		return SimpleCalculator.sum(NumberConverter.convertToDouble(numberOne), NumberConverter.convertToDouble(numberTwo));
 	}
 
@@ -100,7 +99,6 @@ public class MathController {
 			throw new UnsupportedMathOperationException("[Root] Informe valores numericos.");
 		}
 		return SimpleCalculator.root(NumberConverter.convertToDouble(num1), NumberConverter.convertToDouble(indice));
-
 	}
 
 }
